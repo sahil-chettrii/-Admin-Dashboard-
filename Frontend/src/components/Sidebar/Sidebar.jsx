@@ -80,6 +80,17 @@ export default function Sidebar({ collapsed, onToggle }) {
         </div>
       </div>
 
+      {!collapsed && (
+        <div className="sidebar__status">
+          <p className="sidebar__status-label">Market Status</p>
+          <div className="sidebar__status-row">
+            <span className="sidebar__status-dot" />
+            Market Open
+          </div>
+          <p className="sidebar__status-time">17 Aug 2026, 05:51 PM</p>
+        </div>
+      )}
+
       <button className="sidebar__collapse" onClick={onToggle}>
         <ChevronLeft size={16} className={collapsed ? 'flip' : ''} />
         {!collapsed && <span>Collapse</span>}

@@ -37,11 +37,11 @@
 
   /* Chart accent set (asset allocation donut) */
   --chart-1: #4f6cf7;
-  --chart-2: #7b93ff;
-  --chart-3: #3b4bb0;
-  --chart-4: #a3b1ff;
-  --chart-5: #2a3050;
-  --chart-6: #454b6b;
+  --chart-2: #2ecc9e;
+  --chart-3: #f5b83d;
+  --chart-4: #a06cf7;
+  --chart-5: #ff5c5c;
+  --chart-6: #8b93b0;
 
   /* Layout */
   --sidebar-width: 250px;
@@ -106,6 +106,7 @@ ul {
 .text-yellow { color: var(--color-yellow); }
 .text-muted { color: var(--text-muted); }
 .text-secondary { color: var(--text-secondary); }
+.text-accent { color: var(--accent-blue-light); }
 
 .badge {
   display: inline-flex;
@@ -125,6 +126,13 @@ ul {
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  border-color: var(--border-light);
 }
 
 .page-title {
@@ -137,4 +145,20 @@ ul {
   color: var(--text-secondary);
   font-size: 14px;
   margin-bottom: 24px;
+}
+
+/* Slide-down entrance animation utility */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }

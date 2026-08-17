@@ -6,9 +6,13 @@
   border-right: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
-  position: sticky;
-  top: 0;
-  transition: width 0.2s ease, min-width 0.2s ease;
+  transition: width 0.25s ease, min-width 0.25s ease;
+  animation: sidebarSlideIn 0.35s ease;
+}
+
+@keyframes sidebarSlideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 .sidebar--collapsed {
@@ -68,17 +72,80 @@
   white-space: nowrap;
   overflow: hidden;
   margin-bottom: 2px;
-  transition: background 0.15s ease, color 0.15s ease;
+  position: relative;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease, padding-left 0.2s ease;
+  animation: linkFadeIn 0.4s ease backwards;
 }
+
+@keyframes linkFadeIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+li:nth-child(1) .sidebar__link { animation-delay: 0.05s; }
+li:nth-child(2) .sidebar__link { animation-delay: 0.1s; }
+li:nth-child(3) .sidebar__link { animation-delay: 0.15s; }
+li:nth-child(4) .sidebar__link { animation-delay: 0.2s; }
+li:nth-child(5) .sidebar__link { animation-delay: 0.25s; }
 
 .sidebar__link:hover {
   background: var(--bg-card-hover);
   color: var(--text-primary);
+  padding-left: 18px;
+  transform: translateX(2px);
+}
+
+.sidebar__link:active {
+  transform: scale(0.97);
 }
 
 .sidebar__link--active {
   background: var(--accent-blue);
   color: #ffffff;
+  box-shadow: 0 4px 14px rgba(79, 108, 247, 0.35);
+}
+
+.sidebar__link svg {
+  transition: transform 0.2s ease;
+}
+
+.sidebar__link:hover svg {
+  transform: scale(1.1);
+}
+
+.sidebar__status {
+  padding: 14px 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.sidebar__status-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.sidebar__status-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-green);
+  margin-bottom: 4px;
+}
+
+.sidebar__status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-green);
+}
+
+.sidebar__status-time {
+  font-size: 11px;
+  color: var(--text-muted);
 }
 
 .sidebar__collapse {
@@ -90,10 +157,15 @@
   color: var(--text-secondary);
   font-size: 13px;
   font-weight: 500;
+  transition: color 0.2s ease;
 }
 
 .sidebar__collapse:hover {
   color: var(--text-primary);
+}
+
+.sidebar__collapse svg {
+  transition: transform 0.3s ease;
 }
 
 .sidebar__collapse .flip {

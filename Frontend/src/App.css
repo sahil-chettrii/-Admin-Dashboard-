@@ -1,14 +1,45 @@
 .app-shell {
-    display: flex;
-    min-height: 100vh;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .app-main {
-    flex: 1;
-    min-width: 0;
-
+  flex: 1;
+  min-width: 0;
+  height: 100vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 .app-content {
   padding: 24px 28px;
+  animation: pageEnter 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app-content {
+  padding: 24px 28px;
+  animation: pageEnter 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

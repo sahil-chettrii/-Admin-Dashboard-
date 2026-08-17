@@ -1,13 +1,14 @@
 .stat-card {
   display: flex;
   flex-direction: column;
+  padding-bottom: 12px;
 }
 
 .stat-card__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 .stat-card__icon {
@@ -22,7 +23,6 @@
 .stat-card__label {
   font-size: 13px;
   color: var(--text-secondary);
-  margin-bottom: 6px;
 }
 
 .stat-card__value {
@@ -31,6 +31,21 @@
   margin-bottom: 6px;
 }
 
-.stat-card__sub {
+.stat-card__change {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.stat-card__change span:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-weight: 600;
+}
+
+.stat-card__spark {
+  margin: 0 -4px -4px;
 }
