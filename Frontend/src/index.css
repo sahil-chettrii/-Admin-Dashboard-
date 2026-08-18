@@ -5,53 +5,84 @@
 }
 
 :root {
-  /* Backgrounds */
-  --bg-body: #0b0e17;
-  --bg-sidebar: #0d1120;
-  --bg-card: #131729;
-  --bg-card-hover: #171c33;
-  --bg-input: #1a1f36;
-  --bg-elevated: #1a1f36;
-
-  /* Borders */
-  --border-color: #232842;
-  --border-light: #2a3050;
-
-  /* Text */
-  --text-primary: #ffffff;
-  --text-secondary: #8b93b0;
-  --text-muted: #5c6482;
-
-  /* Brand / Accent */
-  --accent-blue: #4f6cf7;
-  --accent-blue-light: #7b93ff;
-  --accent-purple: #6c5ce7;
-
-  /* Status colors */
-  --color-green: #2ecc71;
-  --color-green-bg: rgba(46, 204, 113, 0.12);
-  --color-red: #ff5c5c;
-  --color-red-bg: rgba(255, 92, 92, 0.12);
-  --color-yellow: #f5b83d;
-  --color-yellow-bg: rgba(245, 184, 61, 0.12);
-
-  /* Chart accent set (asset allocation donut) */
-  --chart-1: #4f6cf7;
-  --chart-2: #2ecc9e;
-  --chart-3: #f5b83d;
-  --chart-4: #a06cf7;
-  --chart-5: #ff5c5c;
-  --chart-6: #8b93b0;
-
-  /* Layout */
-  --sidebar-width: 250px;
-  --topbar-height: 72px;
+  /* Layout (theme-independent) */
+  --sidebar-width: 240px;
+  --topbar-height: 68px;
   --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-sm: 6px;
+  --radius-lg: 12px;
+  --radius-sm: 8px;
 
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+[data-theme="dark"] {
+  --bg-body: #0b0d10;
+  --bg-sidebar: #0b0d10;
+  --bg-card: #111418;
+  --bg-card-hover: #15181c;
+  --bg-input: #0b0d10;
+  --bg-elevated: #15181c;
+
+  --border-color: #1d2126;
+  --border-light: #262b31;
+
+  --text-primary: #e8e9ec;
+  --text-secondary: #8a8f98;
+  --text-muted: #5c6068;
+
+  --accent-blue: #4d94d6;
+  --accent-blue-light: #6ba8e0;
+
+  --color-green: #5ec98f;
+  --color-green-bg: rgba(94, 201, 143, 0.12);
+  --color-red: #e26a6a;
+  --color-red-bg: rgba(226, 106, 106, 0.12);
+  --color-yellow: #d6a34d;
+  --color-yellow-bg: rgba(214, 163, 77, 0.12);
+
+  --chart-1: #4d94d6;
+  --chart-2: #5ec98f;
+  --chart-3: #d6a34d;
+  --chart-4: #9d6dd6;
+  --chart-5: #e26a6a;
+  --chart-6: #5c6068;
+
   color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg-body: #f7f8fa;
+  --bg-sidebar: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f2f3f5;
+  --bg-input: #f2f3f5;
+  --bg-elevated: #ffffff;
+
+  --border-color: #e5e7eb;
+  --border-light: #d1d5db;
+
+  --text-primary: #16181c;
+  --text-secondary: #5c6068;
+  --text-muted: #9497a0;
+
+  --accent-blue: #2b6cb0;
+  --accent-blue-light: #3b82c4;
+
+  --color-green: #1e9e5f;
+  --color-green-bg: rgba(30, 158, 95, 0.1);
+  --color-red: #d14343;
+  --color-red-bg: rgba(209, 67, 67, 0.1);
+  --color-yellow: #b8862f;
+  --color-yellow-bg: rgba(184, 134, 47, 0.1);
+
+  --chart-1: #2b6cb0;
+  --chart-2: #1e9e5f;
+  --chart-3: #b8862f;
+  --chart-4: #7c4fc4;
+  --chart-5: #d14343;
+  --chart-6: #9497a0;
+
+  color-scheme: light;
 }
 
 body {
@@ -60,6 +91,7 @@ body {
   min-height: 100vh;
   font-size: 14px;
   line-height: 1.5;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 a {
@@ -100,7 +132,6 @@ ul {
   border-radius: 10px;
 }
 
-/* Reusable utility classes used across pages */
 .text-green { color: var(--color-green); }
 .text-red { color: var(--color-red); }
 .text-yellow { color: var(--color-yellow); }
@@ -126,18 +157,12 @@ ul {
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 20px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-  border-color: var(--border-light);
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .page-title {
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 4px;
 }
 
@@ -147,16 +172,9 @@ ul {
   margin-bottom: 24px;
 }
 
-/* Slide-down entrance animation utility */
 @keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-slide-down {

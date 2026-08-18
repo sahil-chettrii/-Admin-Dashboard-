@@ -32,10 +32,11 @@ export default function Topbar(){
     {id:3, text: 'Weekly portfolio report is ready', time: '3h ago'},
  ]
 
- function toggleTheme(){
-    setDarkMode(!darkMode)
-    document.body.classList.toggle('ligth-mode')
- }
+ function toggleTheme() {
+  const next = darkMode ? 'light' : 'dark'
+  setDarkMode(!darkMode)
+  document.documentElement.setAttribute('data-theme', next)
+}
 
  return(
     <header className="topbar">

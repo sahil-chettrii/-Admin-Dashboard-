@@ -382,7 +382,7 @@ export default function Dashboard() {
           )}
 
           <button className="view-all-btn">
-            <PieIcon size={14} /> View Full Allocation
+            <PieIcon size={14} /> 
           </button>
         </div>
       </div>
