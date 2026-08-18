@@ -491,3 +491,35 @@
     border-right: none;
   }
 }
+
+.greeting-title {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.greeting-name {
+  background: linear-gradient(90deg, var(--accent-blue-light), var(--accent-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.greeting-wave {
+  display: inline-block;
+  animation: wave 1.8s ease-in-out 1;
+  transform-origin: 70% 70%;
+}
+
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  15% { transform: rotate(14deg); }
+  30% { transform: rotate(-8deg); }
+  45% { transform: rotate(14deg); }
+  60% { transform: rotate(-4deg); }
+  75% { transform: rotate(10deg); }
+  100% { transform: rotate(0deg); }
+}

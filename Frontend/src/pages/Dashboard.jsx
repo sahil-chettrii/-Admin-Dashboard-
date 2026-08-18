@@ -151,9 +151,10 @@ export default function Dashboard() {
     <div>
       <div className="dash-header animate-slide-down">
         <div className="dash-header__left">
-          <h1 className="page-title">
-            {greeting}, <span className="text-accent">Sahil</span> 👋
-          </h1>
+          <h1 className="greeting-title">
+                {greeting}, <span className="greeting-name">Welcome back</span>
+                 <span className="greeting-wave">👋</span>
+                     </h1>
           <p className="page-subtitle">Here's what's happening with your portfolio today.</p>
         </div>
         <button className="date-pill">📅 {today}</button>
