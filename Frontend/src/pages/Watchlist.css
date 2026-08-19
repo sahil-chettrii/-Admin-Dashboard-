@@ -1,0 +1,129 @@
+.watchlist-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.watchlist-search {
+  width: 260px;
+}
+
+.watchlist-add {
+  display: flex;
+  gap: 8px;
+}
+
+.watchlist-add input {
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 9px 14px;
+  font-size: 13px;
+  width: 200px;
+  color: var(--text-primary);
+}
+
+.watchlist-add input::placeholder {
+  color: var(--text-muted);
+}
+
+.watchlist-add button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-blue);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: var(--radius-sm);
+  transition: opacity 0.15s ease;
+}
+
+.watchlist-add button:hover {
+  opacity: 0.9;
+}
+
+.watchlist-table-card {
+  padding: 8px 20px 20px;
+  animation: watchlistSlideDown 0.4s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: 0.1s;
+}
+
+.watchlist-table-card table {
+  margin-top: 8px;
+}
+
+.watchlist-table tbody tr {
+  animation: rowFadeIn 0.35s ease backwards;
+}
+
+.watchlist-table tbody tr:nth-child(1) { animation-delay: 0.15s; }
+.watchlist-table tbody tr:nth-child(2) { animation-delay: 0.18s; }
+.watchlist-table tbody tr:nth-child(3) { animation-delay: 0.21s; }
+.watchlist-table tbody tr:nth-child(4) { animation-delay: 0.24s; }
+.watchlist-table tbody tr:nth-child(5) { animation-delay: 0.27s; }
+
+.watchlist-table tbody tr:hover {
+  background: var(--bg-card-hover);
+}
+
+.watchlist-table__spark {
+  width: 90px;
+}
+
+.alert-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--color-yellow-bg);
+  color: var(--color-yellow);
+}
+
+.watchlist-remove-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.watchlist-remove-btn:hover {
+  background: var(--color-red-bg);
+  color: var(--color-red);
+}
+
+@keyframes watchlistSlideDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rowFadeIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@media (max-width: 900px) {
+  .watchlist-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .watchlist-search,
+  .watchlist-add {
+    width: 100%;
+  }
+  .watchlist-add input {
+    flex: 1;
+    width: auto;
+  }
+}
