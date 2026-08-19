@@ -1,4 +1,4 @@
-import { useState } from 'react'
+ import { useState } from 'react'
 import { Search, ArrowUp, ArrowDown } from 'lucide-react'
 import { ResponsiveContainer, AreaChart, Area } from 'recharts'
 import './Markets.css'
@@ -24,3 +24,109 @@ const marketData = [
   { symbol: 'EUR/USD', name: 'Euro / US Dollar', category: 'Forex', price: 1.0842, change: -0.12, volume: '—' },
   { symbol: 'GBP/USD', name: 'British Pound / US Dollar', category: 'Forex', price: 1.2715, change: 0.18, volume: '—' },
 ]
+
+ export default function Markets() {
+  const [activeCategory, setActiveCategory] = useState('All')
+  const [query, setQuery] = useState('')
+
+  const rows = marketData.filter((m) => {
+    const matchesCategory = activeCategory === 'All' || m.category === activeCategory
+    const matchesQuery =
+      m.symbol.toLowerCase().includes(query.toLowerCase()) ||
+      m.name.toLowerCase().includes(query.toLowerCase())
+    return matchesCategory && matchesQuery
+  })
+
+  return (
+    <div>
+      <h1 className="page-title animate-slide-down">Markets</h1>
+      <p className="page-subtitle animate-slide-down">
+        Track prices and trends across stocks, crypto, indices, and forex.
+      </p>
+
+      <div className="markets-toolbar">
+        <div className="category-tabs">
+          {categories.map((c) => (
+            <button
+              key={c}
+              className={`category-tab ${activeCategory === c ? 'category-tab--active' : ''}`}
+              onClick={() => setActiveCategory(c)}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
+
+        <div className="holdings-search markets-search">
+          <Search size={14} />
+          <input
+            type="text"
+            placeholder="Search markets..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </div>
+      </div>
+
+      <div className="card markets-table-card">
+        <table className="holdings-table markets-table">
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>24h Change</th>
+              <th>Volume</th>
+              <th>Trend</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((m) => {
+              const up = m.change >= 0
+              return (
+                <tr key={m.symbol}>
+                  <td className="holdings-table__ticker">{m.symbol}</td>
+                  <td className="text-secondary">{m.name}</td>
+                  <td>
+                    {m.price < 10
+                      ? `$${m.price.toFixed(4)}`
+                      : `$${m.price.toLocaleString(undefined, { maximumFractionDigits: 2 })}`}
+                  </td>
+                  <td className={up ? 'text-green' : 'text-red'}>
+                    <span className="gain-cell">
+                      {up ? <ArrowUp size={12} /> : <ArrowDown size={12} />}
+                      {Math.abs(m.change).toFixed(2)}%
+                    </span>
+                  </td>
+                  <td className="text-secondary">{m.volume}</td>
+                  <td>
+                    <div className="markets-table__spark">
+                      <ResponsiveContainer width="100%" height={28}>
+                        <AreaChart data={spark(up)}>
+                          <Area
+                            type="monotone"
+                            dataKey="v"
+                            stroke={up ? '#5ec98f' : '#e26a6a'}
+                            strokeWidth={1.5}
+                            fill="none"
+                          />
+                        </AreaChart>
+                      </ResponsiveContainer>
+                    </div>
+                  </td>
+                </tr>
+              )
+            })}
+            {rows.length === 0 && (
+              <tr>
+                <td colSpan={6} className="holdings-table__empty text-muted">
+                  No markets match your search.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )
+}

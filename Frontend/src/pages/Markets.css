@@ -1,0 +1,93 @@
+.markets-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 6px;
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+  padding: 4px;
+}
+
+.category-tab {
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-radius: 6px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.category-tab:hover {
+  color: var(--text-primary);
+}
+
+.category-tab--active {
+  background: var(--accent-blue);
+  color: #fff;
+}
+
+.markets-search {
+  width: 260px;
+}
+
+.markets-table-card {
+  padding: 8px 20px 20px;
+  animation: portfolioSlideDown 0.4s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: 0.1s;
+}
+
+.markets-table-card table {
+  margin-top: 8px;
+}
+
+.markets-table tbody tr {
+  animation: rowFadeIn 0.35s ease backwards;
+}
+
+.markets-table tbody tr:nth-child(1) { animation-delay: 0.15s; }
+.markets-table tbody tr:nth-child(2) { animation-delay: 0.18s; }
+.markets-table tbody tr:nth-child(3) { animation-delay: 0.21s; }
+.markets-table tbody tr:nth-child(4) { animation-delay: 0.24s; }
+.markets-table tbody tr:nth-child(5) { animation-delay: 0.27s; }
+.markets-table tbody tr:nth-child(6) { animation-delay: 0.3s; }
+.markets-table tbody tr:nth-child(7) { animation-delay: 0.33s; }
+.markets-table tbody tr:nth-child(8) { animation-delay: 0.36s; }
+.markets-table tbody tr:nth-child(9) { animation-delay: 0.39s; }
+.markets-table tbody tr:nth-child(10) { animation-delay: 0.42s; }
+.markets-table tbody tr:nth-child(11) { animation-delay: 0.45s; }
+.markets-table tbody tr:nth-child(12) { animation-delay: 0.48s; }
+
+.markets-table tbody tr:hover {
+  background: var(--bg-card-hover);
+}
+
+.markets-table__spark {
+  width: 90px;
+}
+
+@keyframes portfolioSlideDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rowFadeIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@media (max-width: 900px) {
+  .markets-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .markets-search {
+    width: 100%;
+  }
+}
