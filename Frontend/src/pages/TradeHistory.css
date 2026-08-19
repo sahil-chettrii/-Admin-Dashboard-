@@ -1,0 +1,54 @@
+.trade-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.trade-summary__item p {
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.trade-summary__item h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.trade-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.trade-search {
+  width: 260px;
+}
+
+.trade-table-card {
+  padding: 8px 20px 20px;
+}
+
+.trade-table-card table {
+  margin-top: 8px;
+}
+
+.trade-table tbody tr:hover {
+  background: var(--bg-card-hover);
+}
+
+@media (max-width: 900px) {
+  .trade-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .trade-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .trade-search {
+    width: 100%;
+  }
+}

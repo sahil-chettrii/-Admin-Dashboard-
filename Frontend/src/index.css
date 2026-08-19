@@ -5,53 +5,65 @@
 }
 
 :root {
-  /* Layout (theme-independent) */
   --sidebar-width: 240px;
   --topbar-height: 68px;
   --radius-md: 10px;
-  --radius-lg: 12px;
+  --radius-lg: 14px;
   --radius-sm: 8px;
 
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 [data-theme="dark"] {
-  --bg-body: #0b0d10;
-  --bg-sidebar: #0b0d10;
-  --bg-card: #111418;
-  --bg-card-hover: #15181c;
-  --bg-input: #0b0d10;
-  --bg-elevated: #15181c;
+  --bg-body: #08090c;
+  --bg-sidebar: #08090c;
+  --bg-card: #121319;
+  --bg-card-hover: #171822;
+  --bg-input: #08090c;
+  --bg-elevated: #171822;
 
-  --border-color: #1d2126;
-  --border-light: #262b31;
+  --border-color: #23252e;
+  --border-light: #2c2f3a;
 
-  --text-primary: #e8e9ec;
-  --text-secondary: #8a8f98;
-  --text-muted: #5c6068;
+  --text-primary: #eef0f2;
+  --text-secondary: #9aa0a6;
+  --text-muted: #6c7280;
 
-  --accent-blue: #4d94d6;
-  --accent-blue-light: #6ba8e0;
+  --accent-blue: #6366f1;
+  --accent-blue-light: #818cf8;
+  --accent-purple: #a78bfa;
 
-  --color-green: #5ec98f;
-  --color-green-bg: rgba(94, 201, 143, 0.12);
-  --color-red: #e26a6a;
-  --color-red-bg: rgba(226, 106, 106, 0.12);
-  --color-yellow: #d6a34d;
-  --color-yellow-bg: rgba(214, 163, 77, 0.12);
+  --color-green: #34d399;
+  --color-green-bg: rgba(52, 211, 153, 0.1);
+  --color-red: #fb7185;
+  --color-red-bg: rgba(251, 113, 133, 0.1);
+  --color-yellow: #fbbf24;
+  --color-yellow-bg: rgba(251, 191, 36, 0.1);
 
-  --chart-1: #4d94d6;
-  --chart-2: #5ec98f;
-  --chart-3: #d6a34d;
-  --chart-4: #9d6dd6;
-  --chart-5: #e26a6a;
-  --chart-6: #5c6068;
+  --chart-1: #818cf8;
+  --chart-2: #34d399;
+  --chart-3: #fbbf24;
+  --chart-4: #a78bfa;
+  --chart-5: #fb7185;
+  --chart-6: #6c7280;
+
+  /* Card gradient tints */
+  --grad-neutral: linear-gradient(160deg, #15161c, #0c0d10);
+  --grad-green: linear-gradient(160deg, #122019, #0c0d10);
+  --grad-purple: linear-gradient(160deg, #181229, #0c0d10);
+  --grad-border-neutral: #23252e;
+  --grad-border-green: #1d3327;
+  --grad-border-purple: #2c2247;
+
+  --page-bg-glow:
+    radial-gradient(circle at 20% 0%, rgba(99, 102, 241, 0.08), transparent 40%),
+    radial-gradient(circle at 90% 30%, rgba(16, 185, 129, 0.06), transparent 40%);
 
   color-scheme: dark;
 }
 
 [data-theme="light"] {
-  --bg-body: #f7f8fa;
+  --bg-body: #f6f7f9;
   --bg-sidebar: #ffffff;
   --bg-card: #ffffff;
   --bg-card-hover: #f2f3f5;
@@ -65,28 +77,40 @@
   --text-secondary: #5c6068;
   --text-muted: #9497a0;
 
-  --accent-blue: #2b6cb0;
-  --accent-blue-light: #3b82c4;
+  --accent-blue: #4f46e5;
+  --accent-blue-light: #6366f1;
+  --accent-purple: #7c3aed;
 
-  --color-green: #1e9e5f;
-  --color-green-bg: rgba(30, 158, 95, 0.1);
-  --color-red: #d14343;
-  --color-red-bg: rgba(209, 67, 67, 0.1);
-  --color-yellow: #b8862f;
-  --color-yellow-bg: rgba(184, 134, 47, 0.1);
+  --color-green: #059669;
+  --color-green-bg: rgba(5, 150, 105, 0.08);
+  --color-red: #dc2626;
+  --color-red-bg: rgba(220, 38, 38, 0.08);
+  --color-yellow: #b45309;
+  --color-yellow-bg: rgba(180, 83, 9, 0.08);
 
-  --chart-1: #2b6cb0;
-  --chart-2: #1e9e5f;
-  --chart-3: #b8862f;
-  --chart-4: #7c4fc4;
-  --chart-5: #d14343;
+  --chart-1: #4f46e5;
+  --chart-2: #059669;
+  --chart-3: #b45309;
+  --chart-4: #7c3aed;
+  --chart-5: #dc2626;
   --chart-6: #9497a0;
+
+  --grad-neutral: linear-gradient(160deg, #ffffff, #f7f8fa);
+  --grad-green: linear-gradient(160deg, #f0fdf6, #ffffff);
+  --grad-purple: linear-gradient(160deg, #f5f3ff, #ffffff);
+  --grad-border-neutral: #e5e7eb;
+  --grad-border-green: #bbf0d3;
+  --grad-border-purple: #ddd6fe;
+
+  --page-bg-glow: none;
 
   color-scheme: light;
 }
 
 body {
   background: var(--bg-body);
+  background-image: var(--page-bg-glow);
+  background-attachment: fixed;
   color: var(--text-primary);
   min-height: 100vh;
   font-size: 14px;
@@ -108,7 +132,8 @@ button {
   color: inherit;
 }
 
-input {
+input,
+select {
   font-family: inherit;
   outline: none;
   border: none;
@@ -153,23 +178,43 @@ ul {
 .badge-yellow { background: var(--color-yellow-bg); color: var(--color-yellow); }
 
 .card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
+  background: var(--grad-neutral);
+  border: 1px solid var(--grad-border-neutral);
   border-radius: var(--radius-lg);
   padding: 20px;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition: border-color 0.2s ease;
+}
+
+.card--green {
+  background: var(--grad-green);
+  border-color: var(--grad-border-green);
+}
+
+.card--purple {
+  background: var(--grad-purple);
+  border-color: var(--grad-border-purple);
 }
 
 .page-title {
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
   margin-bottom: 4px;
 }
 
 .page-subtitle {
   color: var(--text-secondary);
-  font-size: 14px;
+  font-size: 13px;
   margin-bottom: 24px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
 }
 
 @keyframes slideDown {

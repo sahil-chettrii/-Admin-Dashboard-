@@ -11,8 +11,8 @@ const holdings = [
   { ticker: 'JPM', name: 'JPMorgan Chase', shares: 15, avgCost: 165.4, price: 210.3, sector: 'Financials' },
   { ticker: 'XOM', name: 'Exxon Mobil', shares: 35, avgCost: 112.6, price: 104.2, sector: 'Energy' },
   { ticker: 'JNJ', name: 'Johnson & Johnson', shares: 22, avgCost: 158.9, price: 162.1, sector: 'Healthcare' },
-  
 ]
+
 const topGainers = [
   { ticker: 'NVDA', name: 'NVIDIA Corp.', change: '+44.92%' },
   { ticker: 'AAPL', name: 'Apple Inc.', change: '+29.63%' },
@@ -68,30 +68,30 @@ export default function Portfolio() {
 
   return (
     <div>
-      <h1 className="page-title animate-slide-down"> Portfolio 📊</h1>
+      <h1 className="page-title animate-slide-down">Portfolio</h1>
       <p className="page-subtitle animate-slide-down">
-        Track your holdings, performance, and asset allocation — all in one place.
+        Track your holdings, performance, and allocation in one place.
       </p>
 
       <div className="portfolio-summary">
         <div className="card portfolio-summary__item">
-          <p className="text-secondary">Total Value</p>
+          <p className="eyebrow">Total Value</p>
           <h3>${totalValue.toLocaleString(undefined, { maximumFractionDigits: 0 })}</h3>
         </div>
         <div className="card portfolio-summary__item">
-          <p className="text-secondary">Total Cost Basis</p>
+          <p className="eyebrow">Total Cost Basis</p>
           <h3>${totalCost.toLocaleString(undefined, { maximumFractionDigits: 0 })}</h3>
         </div>
-        <div className="card portfolio-summary__item">
-          <p className="text-secondary">Total Gain/Loss</p>
+        <div className="card card--green portfolio-summary__item">
+          <p className="eyebrow">Total Gain/Loss</p>
           <h3 className={totalGain >= 0 ? 'text-green' : 'text-red'}>
             {totalGain >= 0 ? '+' : ''}
             ${totalGain.toLocaleString(undefined, { maximumFractionDigits: 0 })}
           </h3>
         </div>
-        <div className="card portfolio-summary__item">
-          <p className="text-secondary">Return</p>
-          <h3 className={totalGainPct >= 0 ? 'text-green' : 'text-red'}>
+        <div className="card card--purple portfolio-summary__item">
+          <p className="eyebrow">Return</p>
+          <h3 className="text-accent">
             {totalGainPct >= 0 ? '+' : ''}
             {totalGainPct.toFixed(2)}%
           </h3>
@@ -159,47 +159,47 @@ export default function Portfolio() {
       </div>
 
       <div className="portfolio-bottom-grid">
-  <div className="card panel-card">
-    <p className="chart-card__title">Top Gainers</p>
-    {topGainers.map((g) => (
-      <div className="mini-row" key={g.ticker}>
-        <div className="mini-row__icon">{g.ticker.slice(0, 1)}</div>
-        <div className="asset-row__info">
-          <p className="asset-row__ticker">{g.ticker}</p>
-          <p className="text-muted asset-row__name">{g.name}</p>
+        <div className="card panel-card">
+          <p className="chart-card__title">Top Gainers</p>
+          {topGainers.map((g) => (
+            <div className="mini-row" key={g.ticker}>
+              <div className="mini-row__icon">{g.ticker.slice(0, 1)}</div>
+              <div className="asset-row__info">
+                <p className="asset-row__ticker">{g.ticker}</p>
+                <p className="text-muted asset-row__name">{g.name}</p>
+              </div>
+              <p className="text-green mini-row__change">{g.change}</p>
+            </div>
+          ))}
         </div>
-        <p className="text-green mini-row__change">{g.change}</p>
-      </div>
-    ))}
-  </div>
 
-  <div className="card panel-card">
-    <p className="chart-card__title">Top Losers</p>
-    {topLosers.map((l) => (
-      <div className="mini-row" key={l.ticker}>
-        <div className="mini-row__icon">{l.ticker.slice(0, 1)}</div>
-        <div className="asset-row__info">
-          <p className="asset-row__ticker">{l.ticker}</p>
-          <p className="text-muted asset-row__name">{l.name}</p>
+        <div className="card panel-card">
+          <p className="chart-card__title">Top Losers</p>
+          {topLosers.map((l) => (
+            <div className="mini-row" key={l.ticker}>
+              <div className="mini-row__icon">{l.ticker.slice(0, 1)}</div>
+              <div className="asset-row__info">
+                <p className="asset-row__ticker">{l.ticker}</p>
+                <p className="text-muted asset-row__name">{l.name}</p>
+              </div>
+              <p className="text-red mini-row__change">{l.change}</p>
+            </div>
+          ))}
         </div>
-        <p className="text-red mini-row__change">{l.change}</p>
-      </div>
-    ))}
-  </div>
 
-  <div className="card panel-card">
-    <p className="chart-card__title">Sector Breakdown</p>
-    {sectorBreakdown.map((s) => (
-      <div className="mini-row" key={s.name}>
-        <p className="asset-row__ticker">{s.name}</p>
-        <div className="sector-bar">
-          <div className="sector-bar__fill" style={{ width: `${s.pct}%` }} />
+        <div className="card panel-card">
+          <p className="chart-card__title">Sector Breakdown</p>
+          {sectorBreakdown.map((s) => (
+            <div className="mini-row" key={s.name}>
+              <p className="asset-row__ticker">{s.name}</p>
+              <div className="sector-bar">
+                <div className="sector-bar__fill" style={{ width: `${s.pct}%` }} />
+              </div>
+              <p className="mini-row__change">{s.pct}%</p>
+            </div>
+          ))}
         </div>
-        <p className="mini-row__change">{s.pct}%</p>
       </div>
-    ))}
-  </div>
-</div>
     </div>
   )
 }
